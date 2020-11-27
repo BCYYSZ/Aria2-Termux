@@ -1,0 +1,14 @@
+language: shell
+
+branches:
+  only:
+  - dev
+
+script:
+  - bash -c 'shopt -s globstar nullglob; shellcheck **/*.{sh,ksh,bash}'
+
+after_success:
+  - git fetch
+  - git checkout master
+  - git merge dev
+  - git push origin master
